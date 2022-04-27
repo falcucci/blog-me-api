@@ -33,7 +33,10 @@ module.exports = function (sequelize, DataTypes) {
       timestamps: false,
       classMethods: {
         associate: function() {
-          post.hasMany(this.models().tag, { as: 'tags', foreignKey: 'postId', timestamps: false })
+          post.hasMany(
+            this.models().tag,
+            { as: 'tags', foreignKey: 'postId', timestamps: false }
+          )
           post.hasOne(
             this.models().category,
             { as: 'categories',
