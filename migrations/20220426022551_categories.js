@@ -5,6 +5,7 @@ exports.up = function (knex, Promise) {
     table.string('description', 255);
 
     table.comment('Table from categories');
+
     table.index(['id', 'name'], 'idx_categories_1');
     table.engine('InnoDB');
   })
