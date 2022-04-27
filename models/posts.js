@@ -9,6 +9,10 @@ module.exports = function (sequelize, DataTypes) {
         allowNull: false,
         field: "title",
       },
+      author: {
+        type: DataTypes.STRING(255),
+        field: "author",
+      },
       content: {
         type: DataTypes.STRING(1024),
         allowNull: false,
