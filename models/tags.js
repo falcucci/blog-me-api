@@ -21,7 +21,19 @@ module.exports = function (sequelize, DataTypes) {
       classMethods: {
         create: function (obj) {
           return tag.build(obj).save()
-        }
+        },
+        update: function (obj, id) {
+          console.log('obj: ', obj);
+          return tag.find({
+            where: {
+              id: id
+            }
+          }).then(function(row) {
+            if(row){
+              return row.updateAttributes(_.omit(obj, 'id'));
+            }
+          }); 
+        },
       }
     },
   );

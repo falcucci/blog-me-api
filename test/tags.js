@@ -16,7 +16,7 @@ const server = app.listen();
 
 describe('route /tags', () => {
   describe('CREATE tags', () => {
-    it('should create a post', async function() {
+    it('should create a tag and assign to a post', async function() {
       const url = basePath + '/tags';
       const headers = { "Accept": 'application/json' };
       const res = await chai
@@ -44,6 +44,21 @@ describe('route /tags', () => {
           postId: 999
         });
       res.should.have.status(HttpStatus.PRECONDITION_FAILED);   
+    })
+
+    it('should unassign tag from a post', async function() {
+      const url = basePath + '/tags/5';
+      const headers = { "Accept": 'application/json' };
+      const res = await chai
+        .request(server)
+        .put(url)
+        .set(headers)
+        .send({
+          name: 'tag1',
+          description: 'tag1',
+          postId: null
+        });
+      res.should.have.status(HttpStatus.OK);
     })
   })
 })

@@ -73,10 +73,9 @@ function * update() {
       id: Joi.number().integer().required()
     }),
     body: Joi.object().keys({
-      title: Joi.string().max(255),
-      content: Joi.string().max(1024),
-      image: Joi.string().max(255),
-      categoryId: Joi.number().integer()
+      name: Joi.string().max(255),
+      description: Joi.string().max(1024),
+      postId: Joi.number().integer().allow(null)
     })
   });
 
@@ -90,26 +89,26 @@ function * update() {
     throw result.error;
   }
 
-  const categoryId = _.get(result, 'value.body.categoryId');
-  const category = categoryId
-    ? yield models.category.find(categoryId)
+  const postId = _.get(result, 'value.body.postId');
+  const post = postId
+    ? yield models.post.findById(postId)
     : undefined
 
-  if (categoryId && !category) {
-    throw boom.preconditionFailed('Category Must be Valid');
+  if (postId && !post) {
+    throw boom.preconditionFailed('Post Must be Valid');
   }
 
-  const post = yield models.post.update(
+  const tag = yield models.tag.update(
     result.value.body,
     result.value.params.id
   );
 
-  if(!post) {
-    throw boom.notFound('Post Not Found');
+  if(!tag) {
+    throw boom.notFound('Tag Not Found');
   }
 
   this.status = HttpStatus.OK;
-  this.body = post; 
+  this.body = tag; 
 }
 
 function * all() {
