@@ -200,5 +200,46 @@ describe('route /posts/feed', () => {
       const res = await chai.request(server).get(url).set(headers);
       res.should.have.status(HttpStatus.OK);
     })
+
+    it('should filter posts by title', async function() {
+      const url = basePath + '/posts/feed';
+      const headers = { "Accept": 'application/json' };
+      const res =
+        await chai
+        .request(server)
+        .get(url)
+        .query({ "title": 'testing3' })
+        .set(headers);
+
+      res.should.have.status(HttpStatus.OK); 
+    })
+
+    it('should filter posts by category', async function() {
+      const url = basePath + '/posts/feed';
+      const headers = { "Accept": 'application/json' };
+      const res =
+        await chai
+        .request(server)
+        .get(url)
+        .query({ "category": 'music unicorn' })
+        .set(headers);
+
+      res.should.have.status(HttpStatus.OK); 
+    })
+
+    it.skip('should filter posts by tags', async function() {
+      const url = basePath + '/posts/feed';
+      const headers = { "Accept": 'application/json' };
+      const res =
+        await chai
+        .request(server)
+        .get(url)
+        .query({ "tags": ['tag1', 'tag2'] })
+        .set(headers);
+      console.log('res.body: ', res.body);
+
+      res.should.have.status(HttpStatus.OK); 
+    })
+
   })
 })

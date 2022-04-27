@@ -60,8 +60,21 @@ module.exports = function (sequelize, DataTypes) {
             }
           }); 
         },
-        all: function(offset, limit) {
+        all: function(title, category, tags, offset, limit) {
           let filters = [];
+
+          if(title) {
+            filters.push({ title }); 
+          }
+
+          if(category) {
+            filters.push({ '$categories.name$': category }); 
+          }
+
+          // search by tags todo
+          // if(tags) {
+          //   filters.push({ '$tags.name$': {'=': 'tag1'} }); 
+          // }
 
           offset = offset || 0;
           limit = limit || 20;
@@ -70,12 +83,14 @@ module.exports = function (sequelize, DataTypes) {
               {
                 model: this.models().category,
                 as: 'categories',
-                attributes: ['name']
+                attributes: ['name'],
+                required: !(category === undefined)
               },
               {
-              model: this.models().tag,
-              as: 'tags',
-              attributes: ['name']
+                model: this.models().tag,
+                as: 'tags',
+                attributes: ['name'],
+                required: !(tags === undefined)
             }], 
             where: { $and: filters }, 
             attributes: { exclude: ['categoryId'] },

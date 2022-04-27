@@ -106,6 +106,9 @@ function * update() {
 
 function * all() {
   let schema = Joi.object().keys({
+    title: Joi.string().max(255),
+    category: Joi.string().max(255),
+    tags: Joi.array(),
     limit: Joi.number().integer(),
     offset: Joi.number().integer(),
   });
@@ -114,8 +117,13 @@ function * all() {
   if(result.error) {
     throw result.error;
   }
-
-  const posts = yield models.post.all(result.value.offset, result.value.limit);
+  const posts = yield models.post.all(
+    result.value.title,
+    result.value.category,
+    result.value.tags,
+    result.value.offset,
+    result.value.limit
+  );
   this.body = posts; 
 }
 
