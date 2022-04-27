@@ -28,6 +28,9 @@ module.exports = function (sequelize, DataTypes) {
       tableName: "posts",
       timestamps: false,
       classMethods: {
+        associate: function() {
+          post.hasMany(this.models().tag, { as: 'tags', foreignKey: 'postId', timestamps: false })
+        },
         findById: function (id) {
           return post.findOne({ where: { id: id }, attributes: { exclude: ['id'] } });
         },
