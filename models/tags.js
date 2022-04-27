@@ -1,7 +1,7 @@
 const _ = require('lodash');
 
 module.exports = function (sequelize, DataTypes) {
-  let tag = sequelize.define(
+  const tag = sequelize.define(
     "tag",
     {
       name: {
@@ -17,8 +17,13 @@ module.exports = function (sequelize, DataTypes) {
     },
     {
       tableName: "tags",
-      timestamps: false
-    }
+      timestamps: false,
+      classMethods: {
+        create: function (obj) {
+          return tag.build(obj).save()
+        }
+      }
+    },
   );
 
   return tag;

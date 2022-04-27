@@ -114,7 +114,6 @@ function * all() {
   if(result.error) {
     throw result.error;
   }
-  console.log('result: ', result);
 
   const posts = yield models.post.all(result.value.offset, result.value.limit);
   this.body = posts; 

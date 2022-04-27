@@ -19,7 +19,7 @@ const server = app.listen();
 describe('route /posts', () => {
   describe('Get post', () => {
     it('should get a post by its id', async function() {
-      const url = basePath + '/posts/5';
+      const url = basePath + '/posts/2';
       const headers = { "Accept": 'application/json' };
       const res = await chai
         .request(server)
