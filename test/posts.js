@@ -17,6 +17,28 @@ const longString = `Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
 const server = app.listen();
 
 describe('route /posts', () => {
+  describe('Get post', () => {
+    it('should get a post by its id', async function() {
+      const url = basePath + '/posts/5';
+      const headers = { "Accept": 'application/json' };
+      const res = await chai
+        .request(server)
+        .get(url)
+        .set(headers)
+      res.should.have.status(HttpStatus.OK);  
+    })
+
+    it(`should try to get a post by its id but returns not found`,
+      async function() {
+        const url = basePath + '/posts/999';
+        const headers = { "Accept": 'application/json' };
+        const res = await chai
+          .request(server)
+          .get(url)
+          .set(headers)
+        res.should.have.status(HttpStatus.NOT_FOUND);  
+      })
+  })
   describe('Add posts', () => {
     it('should create a post', async function() {
       const url = basePath + '/posts';
@@ -33,7 +55,7 @@ describe('route /posts', () => {
       res.should.have.status(HttpStatus.CREATED); 
     })
 
-    it(`should fail trying to create a post longet than 255
+    it(`should fail trying to create a post longer than 255
       characters as title`,
       async function() {
         const url = basePath + '/posts';
@@ -50,7 +72,7 @@ describe('route /posts', () => {
         res.should.have.status(HttpStatus.BAD_REQUEST);  
       })
 
-    it(`should fail trying to create a post longet than 1024
+    it(`should fail trying to create a post longer than 1024
       characters as content`,
       async function() {
         const url = basePath + '/posts';
@@ -139,11 +161,36 @@ describe('route /posts', () => {
         });
       res.should.have.status(HttpStatus.OK); 
     })
+
+    it('should update post category only', async function() {
+      const url = basePath + `/posts/5`;
+      const headers = { "Accept": 'application/json' };
+      const res = await chai
+        .request(server)
+        .put(url)
+        .set(headers)
+        .send({
+          categoryId: 1
+        });
+      res.should.have.status(HttpStatus.OK); 
+    })
+
+
+    it(`should fail to update a post with a non existent
+      category`, async function() {
+        const url = basePath + `/posts/5`;
+        const headers = { "Accept": 'application/json' };
+        const res = await chai
+          .request(server)
+          .put(url)
+          .set(headers)
+          .send({
+            categoryId: 999
+          });
+        res.should.have.status(HttpStatus.PRECONDITION_FAILED); 
+      })
   })
-
-
 })
-
 
 describe('route /posts/feed', () => {
   describe('GET all posts to be shown in the feed', () => {

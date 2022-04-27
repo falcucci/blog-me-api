@@ -28,6 +28,9 @@ module.exports = function (sequelize, DataTypes) {
       tableName: "posts",
       timestamps: false,
       classMethods: {
+        findById: function (id) {
+          return post.findOne({ where: { id: id }, attributes: { exclude: ['id'] } });
+        },
         create: function (obj) {
           return post.build(obj).save()
         },

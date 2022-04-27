@@ -1,10 +1,32 @@
 'use strict';
 
 const Joi = require('joi');
+const _ = require('lodash');
 const HttpStatus = require("http-status-codes");
 
 const models = require('../models');
 const boom = require('boom');
+
+
+function * findById() {
+  let schema = Joi.object().keys({
+    id: Joi.number().integer().required()
+  });
+
+  const result = Joi.validate(this.params, schema, { abortEarly: false });
+
+  if(result.error) {
+    throw result.error;
+  }
+
+  let post = yield models.post.findById(result.value.id);
+
+  if(!post) {
+    throw boom.notFound('Post Not Found');
+  }
+
+  this.body = post; 
+}
 
 function * add() {
   let schema = Joi.object().keys({
@@ -60,6 +82,15 @@ function * update() {
     throw result.error;
   }
 
+  const categoryId = _.get(result, 'value.body.categoryId');
+  const category = categoryId
+    ? yield models.category.find(categoryId)
+    : undefined
+
+  if (categoryId && !category) {
+    throw boom.preconditionFailed('Category Must be Valid');
+  }
+
   const post = yield models.post.update(
     result.value.body,
     result.value.params.id
@@ -75,3 +106,4 @@ function * update() {
 
 module.exports.add = add;
 module.exports.update = update;
+module.exports.findById = findById;
