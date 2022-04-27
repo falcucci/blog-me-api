@@ -12,7 +12,31 @@ install all dependencies:
 $ npm i
 ```
 
-to run the tests you need a db as `blog_db`. After that you need to install knex to run and setup our migrations as follows:
+install postgresql
+
+```bash
+$ brew install postgresql
+```
+
+and then
+```bash
+$ psql postgres
+```
+
+```bash
+$ postgres=# ALTER ROLE blog CREATEDB;
+```
+now you need to create a db and name it as `blog_db`.
+
+```bash
+$ postgres=# CREATE ROLE blog WITH LOGIN PASSWORD localhost;
+```
+
+```bash
+$ postgres=# CREATE DATABASE blog_db;
+```
+
+ After that you need to install knex to run and setup our migrations as follows:
 ```bash
 $ npm install knex -g
 ```
