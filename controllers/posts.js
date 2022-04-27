@@ -104,6 +104,23 @@ function * update() {
   this.body = post; 
 }
 
+function * all() {
+  let schema = Joi.object().keys({
+    limit: Joi.number().integer(),
+    offset: Joi.number().integer(),
+  });
+
+  const result = Joi.validate(this.query, schema, { abortEarly: false });
+  if(result.error) {
+    throw result.error;
+  }
+  console.log('result: ', result);
+
+  const posts = yield models.post.all(result.value.offset, result.value.limit);
+  this.body = posts; 
+}
+
 module.exports.add = add;
 module.exports.update = update;
 module.exports.findById = findById;
+module.exports.all = all;

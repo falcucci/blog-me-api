@@ -47,6 +47,17 @@ module.exports = function (sequelize, DataTypes) {
               return row.updateAttributes(_.omit(obj, 'id'));
             }
           }); 
+        },
+        all: function(offset, limit) {
+          let filters = [];
+
+          offset = offset || 0;
+          limit = limit || 20;
+          return post.findAll({ 
+            where: { $and: filters }, 
+            offset: offset, 
+            limit: limit 
+          }); 
         }
       },
     }
