@@ -4,6 +4,27 @@
 ## What is this?
 A cloud academy assignment
 
+## Usage
+
+install all dependencies:
+
+```bash
+$ npm i
+```
+
+to run the tests you need a db as `blog_db`. After that you need to install knex to run and setup our migrations as follows:
+```bash
+$ npm install knex -g
+```
+now run all migrations
+```bash
+$ knex migrate:latest 
+```
+you can check if everything is fine running the assertions
+```bash
+$ npm run test
+```
+
 ### Requirements
 
 - [x] CRUD on blog posts ( allowing full and partial updates )
