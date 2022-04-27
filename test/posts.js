@@ -194,7 +194,7 @@ describe('route /posts', () => {
 
 describe('route /posts/feed', () => {
   describe('GET all posts to be shown in the feed', () => {
-    it.only('should return all blog posts paginated', async function() {
+    it('should return all blog posts paginated', async function() {
       const url = basePath + '/posts/feed';
       const headers = { "Accept": 'application/json' };
       const res = await chai.request(server).get(url).set(headers);

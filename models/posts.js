@@ -30,6 +30,11 @@ module.exports = function (sequelize, DataTypes) {
       classMethods: {
         associate: function() {
           post.hasMany(this.models().tag, { as: 'tags', foreignKey: 'postId', timestamps: false })
+          post.hasOne(
+            this.models().category,
+            { as: 'categories',
+              foreignKey: 'postId', timestamps: false }
+            )
         },
         findById: function (id) {
           return post.findOne({ where: { id: id }, attributes: { exclude: ['id'] } });
@@ -54,7 +59,19 @@ module.exports = function (sequelize, DataTypes) {
           offset = offset || 0;
           limit = limit || 20;
           return post.findAll({ 
+            include:[
+              {
+                model: this.models().category,
+                as: 'categories',
+                attributes: ['name']
+              },
+              {
+              model: this.models().tag,
+              as: 'tags',
+              attributes: ['name']
+            }], 
             where: { $and: filters }, 
+            attributes: { exclude: ['categoryId'] },
             offset: offset, 
             limit: limit 
           }); 

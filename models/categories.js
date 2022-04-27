@@ -12,7 +12,8 @@ module.exports = function (sequelize, DataTypes) {
       description: {
         type: DataTypes.STRING(255),
         field: "description",
-      }
+      },
+      postId: { type: DataTypes.INTEGER.UNSIGNED, field: 'post_id' },
     },
     {
       tableName: "categories",
