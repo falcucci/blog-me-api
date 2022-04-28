@@ -193,6 +193,20 @@ describe('route /posts', () => {
   })
 })
 
+describe('route /posts/:id', () => {
+  describe('DELETE a post', () => {
+    it('should delete a post with admin user', async function() {
+      const url = basePath + `/posts/44`;
+      const headers = { "Accept": 'application/json' };
+      const res = await chai
+        .request(server)
+        .delete(url)
+        .set(headers)
+      res.should.have.status(HttpStatus.OK);
+    })
+  })
+})
+
 describe('route /posts/feed', () => {
   describe('GET all posts to be shown in the feed', () => {
     it('should return all blog posts paginated', async function() {

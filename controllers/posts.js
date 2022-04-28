@@ -106,6 +106,34 @@ function * update() {
   this.body = post; 
 }
 
+function * destroy() {
+  const schema = Joi.object().keys({
+    params: Joi.object().keys({
+      id: Joi.number().integer().required()
+    })
+  });
+
+  const result = Joi.validate(
+    { params: this.params },
+    schema,
+    { abortEarly: false }
+  );
+
+  if(result.error) {
+    throw result.error;
+  }
+
+  const post = yield models.post.delete(
+    result.value.params.id
+  );
+
+  if(!post) {
+    throw boom.notFound('Post Not Found');
+  }
+
+  this.status = HttpStatus.OK;
+}
+
 function * all() {
   let schema = Joi.object().keys({
     title: Joi.string().max(255),
@@ -131,5 +159,6 @@ function * all() {
 
 module.exports.add = add;
 module.exports.update = update;
+module.exports.destroy = destroy;
 module.exports.findById = findById;
 module.exports.all = all;
