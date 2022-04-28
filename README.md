@@ -64,7 +64,7 @@ $ npm run test
 - [x] Adding/removing tags from a blog post;
 - [x] A blog post can only be related to one category;
 - [x] Content must not be more than 1024 characters;
-- [ ] The deletion of a blog post must be performed by ADMINS only;
+- [x] The deletion of a blog post must be performed by ADMINS only;
 - [x] The server must start on port 8090
 - [x] Test coverage must be at least 30%
 
