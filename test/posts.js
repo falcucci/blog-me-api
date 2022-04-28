@@ -237,7 +237,6 @@ describe('route /posts/feed', () => {
         .get(url)
         .query({ "tags": ['', 'hard'] })
         .set(headers);
-      console.log('res.body: ', res.body);
 
       res.should.have.status(HttpStatus.OK); 
     })

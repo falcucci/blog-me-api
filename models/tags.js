@@ -25,11 +25,7 @@ module.exports = function (sequelize, DataTypes) {
             { as: 'posts', foreignKey: 'postId', timestamps: false }
           )
         },
-        create: function (obj) {
-          return tag.build(obj).save()
-        },
         update: function (obj, id) {
-          console.log('obj: ', obj);
           return tag.find({
             where: {
               id: id

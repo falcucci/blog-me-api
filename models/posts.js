@@ -46,8 +46,18 @@ module.exports = function (sequelize, DataTypes) {
         findById: function (id) {
           return post.findOne({ where: { id: id }, attributes: { exclude: ['id'] } });
         },
-        create: function (obj) {
-          return post.build(obj).save()
+        create: function (obj, tags=[]) {
+          return post.build(obj).save().then(row => {
+            const tags = obj.tags || [];
+            tags.forEach(tag => {
+              this.models().tag.build({
+                name: tag,
+                description: tag,
+                postId: row.id
+              }).save()
+            })
+            return row
+          })
         },
         update: function (obj, id) {
           return post.find({

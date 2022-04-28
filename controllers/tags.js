@@ -74,7 +74,7 @@ function * update() {
     }),
     body: Joi.object().keys({
       name: Joi.string().max(255),
-      description: Joi.string().max(1024),
+      description: Joi.string().max(255),
       postId: Joi.number().integer().allow(null)
     })
   });

@@ -15,18 +15,20 @@ const server = app.listen();
 
 
 describe('route /tags', () => {
-  describe('CREATE tags', () => {
-    it('should create a tag and assign to a post', async function() {
-      const url = basePath + '/tags';
+  describe('CREATE post tags', () => {
+    it('should create tags and assign to a post', async function() {
+      const url = basePath + '/posts';
       const headers = { "Accept": 'application/json' };
       const res = await chai
         .request(server)
         .post(url)
         .set(headers)
         .send({
-          name: 'tag1',
-          description: 'tag1',
-          postId: 2
+          title: 'testing',
+          author: 'Alexsander',
+          content: 'testing',
+          image: 'testing',
+          tags: ['unicorn', 'unicorn2', 'unicorn3']
         });
       res.should.have.status(HttpStatus.CREATED);  
     })
@@ -46,8 +48,8 @@ describe('route /tags', () => {
       res.should.have.status(HttpStatus.PRECONDITION_FAILED);   
     })
 
-    it.skip('should unassign tag from a post', async function() {
-      const url = basePath + '/tags/5';
+    it('should unassign tag from a post', async function() {
+      const url = basePath + '/tags/29';
       const headers = { "Accept": 'application/json' };
       const res = await chai
         .request(server)

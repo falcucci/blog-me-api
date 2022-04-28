@@ -19,7 +19,7 @@ module.exports = {
         host: process.env["DATASOURCES_BLOG_ADDR"] || "localhost",
         port: process.env["DATASOURCES_BLOG_PORT"] || 5432,
         debug: false,
-        logging: console.log,
+        logging: '',
         pool: {
           max:
             process.env["DATASOURCES_BLOG_OPTIONS_POOL_MAX"] || 5,
