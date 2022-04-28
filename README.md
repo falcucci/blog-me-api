@@ -88,6 +88,12 @@ you can start the instances using docker compose
 $ docker-compose up
 ```
 
+to avoid any trouble I high recommend you to stop your local postgres process
+```bash
+$ brew services stop postgresql
+```
+
+
 ### Features
 
 - [x] CRUD on blog posts (allowing full and partial updates);
