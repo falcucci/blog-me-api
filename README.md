@@ -7,7 +7,17 @@ A cloud academy assignment
 ___
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://www.getpostman.com/collections/d7855d8ad72609983199)
 
-## Usage
+## Development
+
+Make sure you have installed [Node.js](https://nodejs.org/), [Npm](https://www.npmjs.com) and [Git](https://git-scm.com/) on your development machine. Npm should come with Node.js.
+	
+Just check them by `git --version`, `node -v` and `npm -v`.
+
+fork and clone this repository to your computer.
+
+```bash
+git clone git@github.com:falcucci/blog-me-api.git
+```
 
 install all dependencies:
 
