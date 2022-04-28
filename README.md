@@ -58,7 +58,10 @@ you can check if everything is fine running the assertions
 ```bash
 $ npm run test
 ```
-
+generate coverage
+```bash
+$ npm run coverage
+```
 <img width="1552" alt="Screen Shot 2022-04-28 at 06 41 39" src="https://user-images.githubusercontent.com/33763843/165677958-4d6ea1ba-1840-41f0-8ef1-d4bce4015f59.png">
 
 
