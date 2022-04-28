@@ -33,21 +33,6 @@ describe('route /tags', () => {
       res.should.have.status(HttpStatus.CREATED);  
     })
 
-    it('should validate post id if given', async function() {
-      const url = basePath + '/tags';
-      const headers = { "Accept": 'application/json' };
-      const res = await chai
-        .request(server)
-        .post(url)
-        .set(headers)
-        .send({
-          name: 'tag1',
-          description: 'tag1',
-          postId: 999
-        });
-      res.should.have.status(HttpStatus.PRECONDITION_FAILED);   
-    })
-
     it('should unassign tag from a post', async function() {
       const url = basePath + '/tags/29';
       const headers = { "Accept": 'application/json' };

@@ -157,6 +157,7 @@ describe('route /posts', () => {
         .set(headers)
         .send({
           title: 'testing3',
+          author: 'Alexsander',
           content: longString,
           image: 'http://google.com3'
         });

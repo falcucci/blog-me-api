@@ -28,45 +28,6 @@ function * findById() {
   this.body = post; 
 }
 
-function * add() {
-  let schema = Joi.object().keys({
-    body: Joi.object().keys({
-      name: Joi.string().max(255).required(),
-      description: Joi.string().max(255).required(),
-      postId: Joi.number().integer()
-    })
-  });
-
-  const result = Joi.validate(
-    { body: this.request.body },
-    schema,
-    { abortEarly: false }
-  );
-
-  if(result.error) {
-    throw result.error;
-  }
-
-  const postId = _.get(result, 'value.body.postId');
-  const post = postId
-    ? yield models.post.findById(postId)
-    : undefined
-
-  if (postId && !post) {
-    throw boom.preconditionFailed('Post Must be Valid');
-  }
-
-  const tag = yield models.tag.create(result.value.body);
-
-  if(!tag) {
-    throw boom.notFound('Post Not Found');
-  }
-
-  this.status = HttpStatus.CREATED;
-  this.body = tag; 
-  
-}
-
 function * update() {
   const schema = Joi.object().keys({
     params: Joi.object().keys({
@@ -126,6 +87,5 @@ function * all() {
   this.body = posts; 
 }
 
-module.exports.add = add;
 module.exports.update = update;
 module.exports.findById = findById;

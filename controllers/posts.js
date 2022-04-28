@@ -73,6 +73,7 @@ function * update() {
     }),
     body: Joi.object().keys({
       title: Joi.string().max(255),
+      author: Joi.string().max(255),
       content: Joi.string().max(1024),
       image: Joi.string().max(255),
       categoryId: Joi.number().integer()
