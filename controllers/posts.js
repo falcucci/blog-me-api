@@ -119,7 +119,6 @@ function * destroy() {
     })
   });
 
-  console.log('this.headers: ', this.headers);
   const user = _.get(this, "headers['x-user']")
 
   if (user !== Users.ADMIN) {
