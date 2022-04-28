@@ -101,7 +101,7 @@ module.exports = function (sequelize, DataTypes) {
               {
                 model: this.models().tag,
                 as: 'tags',
-                attributes: ['id', 'name', 'postId'],
+                attributes: ['name'],
                 where: {
                   'name': tags
                 },
