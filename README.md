@@ -109,6 +109,7 @@ Searching for a blog post by
 - [x] category
 - [x] tag(s)
 - [x] all of them
+- [x] feed pagination (extra feature)
 
 ### Improvements to do
 
