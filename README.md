@@ -94,5 +94,5 @@ Searching for a blog post by
 
 - add better assertions to check the responses using mocks;
 - `stub` and `spy` methods as the pg database and specific methods;
-- benchmark as a proof of throughput and test performance;
+- benchmark as a proof of throughput and test loading performance;
 - better docs using jsdocs on methods and/or swagger/blueprint;
