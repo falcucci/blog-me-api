@@ -71,15 +71,10 @@ module.exports = function (sequelize, DataTypes) {
             filters.push({ '$categories.name$': category }); 
           }
 
-          // search by tags todo
-          // if(tags) {
-          //   filters.push({ '$tags.name$': {'=': 'tag1'} }); 
-          // }
-
           offset = offset || 0;
           limit = limit || 20;
           return post.findAll({ 
-            include:[
+            include: [
               {
                 model: this.models().category,
                 as: 'categories',
@@ -89,8 +84,11 @@ module.exports = function (sequelize, DataTypes) {
               {
                 model: this.models().tag,
                 as: 'tags',
-                attributes: ['name'],
-                required: !(tags === undefined)
+                attributes: ['id', 'name', 'postId'],
+                where: {
+                  'name': tags
+                },
+                required: !(tags === undefined),
             }], 
             where: { $and: filters }, 
             attributes: { exclude: ['categoryId'] },

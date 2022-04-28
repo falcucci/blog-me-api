@@ -19,6 +19,12 @@ module.exports = function (sequelize, DataTypes) {
       tableName: "tags",
       timestamps: false,
       classMethods: {
+        associate: function() {
+          tag.belongsTo(
+            this.models().post,
+            { as: 'posts', foreignKey: 'postId', timestamps: false }
+          )
+        },
         create: function (obj) {
           return tag.build(obj).save()
         },

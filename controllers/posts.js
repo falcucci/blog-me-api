@@ -32,6 +32,7 @@ function * add() {
   let schema = Joi.object().keys({
     body: Joi.object().keys({
       title: Joi.string().max(255).required(),
+      author: Joi.string().max(255).required(),
       content: Joi.string().max(1024).required(),
       image: Joi.string().max(255).required(),
       categoryId: Joi.number().integer()
@@ -113,6 +114,7 @@ function * all() {
     offset: Joi.number().integer(),
   });
 
+  console.log('this.query: ', this.query);
   const result = Joi.validate(this.query, schema, { abortEarly: false });
   if(result.error) {
     throw result.error;

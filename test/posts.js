@@ -49,6 +49,7 @@ describe('route /posts', () => {
         .set(headers)
         .send({
           title: 'testing',
+          author: 'Alexsander',
           content: 'testing',
           image: 'testing'
         });
@@ -227,14 +228,14 @@ describe('route /posts/feed', () => {
       res.should.have.status(HttpStatus.OK); 
     })
 
-    it.skip('should filter posts by tags', async function() {
+    it('should filter posts by tags', async function() {
       const url = basePath + '/posts/feed';
       const headers = { "Accept": 'application/json' };
       const res =
         await chai
         .request(server)
         .get(url)
-        .query({ "tags": ['tag1', 'tag2'] })
+        .query({ "tags": ['', 'hard'] })
         .set(headers);
       console.log('res.body: ', res.body);
 
