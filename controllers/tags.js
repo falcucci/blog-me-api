@@ -8,26 +8,6 @@ const models = require('../models');
 const boom = require('boom');
 
 
-function * findById() {
-  let schema = Joi.object().keys({
-    id: Joi.number().integer().required()
-  });
-
-  const result = Joi.validate(this.params, schema, { abortEarly: false });
-
-  if(result.error) {
-    throw result.error;
-  }
-
-  let post = yield models.post.findById(result.value.id);
-
-  if(!post) {
-    throw boom.notFound('Post Not Found');
-  }
-
-  this.body = post; 
-}
-
 function * update() {
   const schema = Joi.object().keys({
     params: Joi.object().keys({
@@ -88,4 +68,3 @@ function * all() {
 }
 
 module.exports.update = update;
-module.exports.findById = findById;
