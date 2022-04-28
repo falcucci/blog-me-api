@@ -77,7 +77,7 @@ generate coverage
 ```bash
 $ npm run coverage
 ```
-<img width="1552" alt="Screen Shot 2022-04-28 at 06 41 39" src="https://user-images.githubusercontent.com/33763843/165677958-4d6ea1ba-1840-41f0-8ef1-d4bce4015f59.png">
+<img width="1547" alt="Screen Shot 2022-04-28 at 17 44 26" src="https://user-images.githubusercontent.com/33763843/165792055-705b753f-d250-41b1-9c94-508fdfac9fc8.png">
 
 ### Run server with Docker
 you can start the instances using docker compose
