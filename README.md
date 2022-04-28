@@ -64,7 +64,7 @@ $ npm run test
 
 ### Features
 
-- [x] CRUD on blog posts ( allowing full and partial updates )
+- [x] CRUD on blog posts (allowing full and partial updates)
 
 - [x] Assigning a blog post to a category;
 - [x] Adding/removing tags from a blog post;
