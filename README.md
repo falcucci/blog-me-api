@@ -49,6 +49,12 @@ now run all migrations
 ```bash
 $ knex migrate:latest 
 ```
+run the seeds
+
+```bash
+$ knex seed:run
+```
+
 
 ### Containers
 you can start the instances using docker compose
@@ -57,11 +63,6 @@ you can start the instances using docker compose
 $ docker-compose up
 ```
 
-Seeds
-
-```bash
-$ knex seed:run
-```
 
 you can check if everything is fine running the assertions
 ```bash
