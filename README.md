@@ -21,20 +21,22 @@ install postgresql
 $ brew install postgresql
 ```
 
-and then
+initialize postgres
+
 ```bash
 $ psql postgres
 ```
+grants all privileges for the user
 
 ```bash
 $ postgres=# ALTER ROLE blog CREATEDB;
 ```
-now you need to create a db and name it as `blog_db`.
 
+create a new user and the password as follows
 ```bash
 $ postgres=# CREATE ROLE blog WITH LOGIN PASSWORD localhost;
 ```
-
+now you need to create a db and name it as `blog_db`
 ```bash
 $ postgres=# CREATE DATABASE blog_db;
 ```
@@ -48,8 +50,8 @@ now run all migrations
 $ knex migrate:latest 
 ```
 
-### docker
-or just start the instances using docker compose
+### Containers
+you can just start the instances using docker compose
 
 ```bash
 $ docker-compose up
