@@ -51,7 +51,7 @@ $ knex migrate:latest
 ```
 
 ### Containers
-you can just start the instances using docker compose
+you can start the instances using docker compose
 
 ```bash
 $ docker-compose up
