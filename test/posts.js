@@ -11,9 +11,6 @@ const HttpStatus = require("http-status-codes");
 chai.use(chaiHttp);
 chai.should();
 
-const longString = `Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.`
-
-
 const server = app.listen();
 
 describe('route /posts', () => {
@@ -66,7 +63,7 @@ describe('route /posts', () => {
           .post(url)
           .set(headers)
           .send({
-            title: longString,
+            title: 'title'.repeat(100),
             content: 'testing',
             image: 'testing'
           });
@@ -84,7 +81,7 @@ describe('route /posts', () => {
           .set(headers)
           .send({
             title: 'testing',
-            content: longString.repeat(100),
+            content: 'repeat'.repeat(100),
             image: 'testing'
           });
         res.should.have.status(HttpStatus.BAD_REQUEST);  
@@ -158,7 +155,7 @@ describe('route /posts', () => {
         .send({
           title: 'testing3',
           author: 'Alexsander',
-          content: longString,
+          content: 'repeat'.repeat(100),
           image: 'http://google.com3'
         });
       res.should.have.status(HttpStatus.OK); 
