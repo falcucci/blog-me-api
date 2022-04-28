@@ -90,7 +90,7 @@ Searching for a blog post by
 - [x] tag(s)
 - [x] all of them
 
-### Improvements?
+### Improvements to do
 
 - add better assertions to check the responses using mocks;
 - `stub` and `spy` methods as the pg database and specific methods;
