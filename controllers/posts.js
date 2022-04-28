@@ -133,7 +133,6 @@ function * destroy() {
     schema,
     { abortEarly: false }
   );
-  console.log('result: ', result);
 
   if(result.error) {
     throw result.error;
