@@ -4,6 +4,9 @@
 ## What is this?
 A cloud academy assignment
 
+___
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://www.getpostman.com/collections/d7855d8ad72609983199)
+
 ## Usage
 
 install all dependencies:
