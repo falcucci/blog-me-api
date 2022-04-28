@@ -64,5 +64,5 @@ $ npm run test
 Searching for a blog post by
 - [x] title
 - [x] category
-- [ ] tag(s)
-- [ ] all of them
+- [x] tag(s)
+- [x] all of them
