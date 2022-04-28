@@ -197,12 +197,28 @@ describe('route /posts/:id', () => {
   describe('DELETE a post', () => {
     it('should delete a post with admin user', async function() {
       const url = basePath + `/posts/44`;
-      const headers = { "Accept": 'application/json' };
+      const headers = {
+        "Accept": 'application/json',
+        "X-User": 'admin'
+      };
       const res = await chai
         .request(server)
         .delete(url)
         .set(headers)
       res.should.have.status(HttpStatus.OK);
+    })
+
+    it('should delete a post with normal user', async function() {
+      const url = basePath + `/posts/44`;
+      const headers = {
+        "Accept": 'application/json',
+        "X-User": 'user'
+      };
+      const res = await chai
+        .request(server)
+        .delete(url)
+        .set(headers)
+      res.should.have.status(HttpStatus.PRECONDITION_FAILED); 
     })
   })
 })

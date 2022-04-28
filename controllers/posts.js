@@ -7,6 +7,11 @@ const HttpStatus = require("http-status-codes");
 const models = require('../models');
 const boom = require('boom');
 
+const Users = {
+  ADMIN: 'admin',
+  USER: 'user'
+}
+
 
 function * findById() {
   let schema = Joi.object().keys({
@@ -113,11 +118,21 @@ function * destroy() {
     })
   });
 
+  console.log('this.headers: ', this.headers);
+  const user = _.get(this, "headers['x-user']")
+
+  if (user !== Users.ADMIN) {
+    throw boom.preconditionFailed(
+      'You are not allowed to do this operation'
+    );
+  }
+
   const result = Joi.validate(
     { params: this.params },
     schema,
     { abortEarly: false }
   );
+  console.log('result: ', result);
 
   if(result.error) {
     throw result.error;
