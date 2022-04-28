@@ -44,6 +44,13 @@ now run all migrations
 ```bash
 $ knex migrate:latest 
 ```
+
+Seeds
+
+```bash
+$ knex seed:run
+```
+
 you can check if everything is fine running the assertions
 ```bash
 $ npm run test
