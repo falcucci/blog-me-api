@@ -51,6 +51,12 @@ now you need to create a db and name it as `blog_db`
 $ postgres=# CREATE DATABASE blog_db;
 ```
 
+or just run:
+
+```bash
+$ sh ./db/01-init.sh
+```
+
  After that you need to install knex to run and setup our migrations as follows:
 ```bash
 $ npm install knex -g
