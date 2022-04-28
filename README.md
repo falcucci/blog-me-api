@@ -86,7 +86,7 @@ you can start the instances using docker compose
 $ docker-compose up
 ```
 
-to avoid any trouble I highly recommend you to stop your local postgres process
+to avoid any trouble in case of using docker I highly recommend you to stop your local postgres process
 ```bash
 $ brew services stop postgresql
 ```
