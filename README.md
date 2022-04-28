@@ -1,7 +1,7 @@
-# blog-me-api
+<h1 align="center">BLOG ME API</h1>
 
+<p align="center">A Cloud Academy assignment.</p>
 
-A Cloud Academy assignment.
 ___
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://www.getpostman.com/collections/d7855d8ad72609983199)
 
