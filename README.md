@@ -1,9 +1,7 @@
 # blog-me-api
 
 
-## What is this?
-A cloud academy assignment
-
+A Cloud Academy assignment.
 ___
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://www.getpostman.com/collections/d7855d8ad72609983199)
 
