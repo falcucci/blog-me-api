@@ -48,6 +48,13 @@ now run all migrations
 $ knex migrate:latest 
 ```
 
+### docker
+or just start the instances using docker compose
+
+```bash
+$ docker-compose up
+```
+
 Seeds
 
 ```bash
